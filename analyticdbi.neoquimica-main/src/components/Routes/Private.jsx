@@ -1,0 +1,14 @@
+import { Route, Redirect } from 'react-router-dom'
+import { userAuthenticated } from 'services/auth'
+
+const Component = ({ component: Component, redirect, ...rest }) => {
+    return (
+        <Route {...rest} render={props =>
+            userAuthenticated() ?
+                <Component {...props} /> :
+                <Redirect to={redirect} />}
+        />
+    )
+}
+
+export default Component
